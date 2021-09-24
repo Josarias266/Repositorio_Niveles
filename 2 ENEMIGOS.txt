@@ -1,0 +1,36 @@
+class villanos:
+    
+
+    def __init__(self,nombre,HP,AP,escudo,SP,time):
+        self.nombre = nombre
+        self.HP = HP
+        self.AP = AP
+        self.escudo = escudo
+        self.SP = SP
+        self.time = time
+
+    def __str__(self):
+        return self.nombre
+
+    def atacar (self, jugador):
+        if jugador.escudo:
+            self.HP -= self.AP
+
+
+
+        else:
+            jugador.HP -= self.AP
+        print("{} ataca a {}".format(self.nombre, jugador))
+        print("{} tiene de salud {}".format(self, self.HP))
+        print("{} tiene de salud {}".format(jugador, jugador.HP))
+      
+
+momia1 = villanos("momia", 50, 20, True, 50, 60) 
+zombie1 = villanos("zombie", 40, 15, False, 60, 80)
+jugador = villanos("jugador", 60, 20, True, 80, 60)
+
+
+momia1.atacar(jugador)
+jugador.atacar(momia1)
+zombie1.atacar(jugador)
+
