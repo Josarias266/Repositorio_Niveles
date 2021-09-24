@@ -1,0 +1,4 @@
+HP = Puntos de salud
+AP = Puntos de ataque
+SP = Puntos de velocidad
+time = Tiempo de vida
