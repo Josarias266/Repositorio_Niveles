@@ -5,7 +5,7 @@ def select():
     print ("Whomp")
     print ("Metapod")
     print ("Tohru")
-    print ("Koopa-Troopa")
+    print ("Koopa Troopa")
     print ("Momia")
     print ("Zombi")
     print ("Spider")
