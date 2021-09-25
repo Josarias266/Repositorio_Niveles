@@ -23,7 +23,7 @@ pokemon = obstaculo("Metapod", 7, 9, True)
 #pokemon.matar()
 print(pokemon.estado())
 dragon = obstaculo("Tohru", 20, 10, True)
-dragon.matar()
+#dragon.matar()
 print(dragon.estado())
 koopa = obstaculo("Koopa-Troopa", 15, 11, True)
 koopa.matar()
@@ -72,3 +72,4 @@ export.close()
 #Pendiente funcion para disminuir la resistencia
 #Pendiente funcion de nueva habilidad jugador
 #Pendiente nueva habilidad obstaculo
+#Pendiente módulo para escoger a quien derrotar
