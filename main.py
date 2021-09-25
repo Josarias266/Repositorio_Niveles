@@ -7,3 +7,5 @@ class obstaculo:
 
 wolfman = obstaculo("Lucas", 7, 7, True)
 vampire = obstaculo("Drácula", 8, 6, True)
+
+#Hola Jose 
