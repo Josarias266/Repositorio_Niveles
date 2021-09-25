@@ -11,30 +11,42 @@ print ("Cuervo")
 print ("Farm")
 print ("Jalks")
 
-c = input("¿Qué enemigo quieres derrotar?: ")
-c = c.upper()
-if c == "WHOMP":
- sig = "Whomp"
-elif c == "METAPOD":
- sig = "Metapod"
-elif c == "TOHRU":
- sig = "Tohru"
-elif c == "KOOPA-TROOPA":
- sig = "Koopa-Troopa"
-elif c == "MOMIA":
- sig = "Momia"
-elif c == "ZOMBI":
- sig = "Zombi"
-elif c == "SPIDER":
- sig = "Spider"
-elif c == "CUERVO":
- sig = "Cuervo"
-elif c == "FARM":
- sig = "Farm"
-elif c == "JALKS":
- sig = "Jalks"
+def defeat():
+    print ("Felicidades! Has derrotado a " + (defeated))
+
+choice = input("¿Qué enemigo quieres derrotar?: ")
+choice = choice.upper()
+if choice == "WHOMP":
+ defeated = "Whomp"
+ defeat()
+elif choice == "METAPOD":
+ defeated = "Metapod"
+ defeat()
+elif choice == "TOHRU":
+ defeated = "Tohru"
+ defeat()
+elif choice == "KOOPA TROOPA":
+ defeated = "Koopa-Troopa"
+ defeat()
+elif choice == "MOMIA":
+ defeated = "Momia"
+ defeat()
+elif choice == "ZOMBI":
+ defeated = "Zombi"
+ defeat()
+elif choice == "SPIDER":
+ defeated = "Spider"
+ defeat()
+elif choice == "CUERVO":
+ defeated = "Cuervo"
+ defeat()
+elif choice == "FARM":
+ defeated = "Farm"
+ defeat()
+elif choice == "JALKS":
+ defeated = "Jalks"
+ defeat()
 else:
  print ("Asegurate de haber escogido un enemigo de la lista y de haberlo escrito bien xD")
  
-print ("Felicidades! Has derrotado a " + (sig))
 input ("Eso fue todo, presiona la tecla enter para salir...")
