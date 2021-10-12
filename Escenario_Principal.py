@@ -1,6 +1,6 @@
 import os
 
-class luchador:  #aquí se define la clase principal para los obstáculos
+class luchador:  #aquí se define la clase principal para los avatares
     def __init__(self, name, hp, ap, patada, manada, defbaja, defalta, selected, alive):  #aquí se define el constructor
         self.name = name
         self.hp = hp
@@ -30,20 +30,25 @@ class luchador:  #aquí se define la clase principal para los obstáculos
         else:
             return "El luchador " + (self.name) + " no ha sido seleccionado"
 
+#Avatares JA
 chabelo = luchador("Chabelo", 10, 1, False, False, False, False, False, True)
 tecun = luchador("Tecún Uman", 10, 1, False, False, False, False, False, True)
+#Avatares FQ
 arjona = luchador("Ricardo Arjona", 10, 1, False, False, False, False, False, True)
 gaby = luchador("Gaby Moreno", 10, 1, False, False, False, False, False, True)
 mcgregor = luchador("Conor Mcgregor", 10, 1, False, False, False, False, False, True)
+#Avatares JP
 jake = luchador("Jake Paul", 10, 1, False, False, False, False, False, True)
-reina = luchador("La Reina Izabel", 10, 1, False, False, False, False, False, True)
 siuu = luchador("El Bicho", 10, 1, False, False, False, False, False, True)
+#Avatares RS
+reina = luchador("La Reina Izabel", 10, 1, False, False, False, False, False, True)
 jackie = luchador("Jackie Chan", 10, 1, False, False, False, False, False, True)
-buitre1 = luchador("Jalks", 10, 1, False, False, False, False, False, True)
-wolfman = luchador("Lucas", 10, 1, False, False, False, False, False, True)
+#Avatares KA
+trump = luchador("Trump", 10, 1, False, False, False, False, False, True)
+messi = luchador("Messi Chikito", 10, 1, False, False, False, False, False, True)
 
 print ("Bienvenido!")
-def selection():    #Sección 1, selección de personaje
+def selection():    #Sección 1 --- Función para selección de personaje
     print ("Escoje tu luchador!")
     print ("Chabelo")
     print ("Tecún Uman")
@@ -54,8 +59,8 @@ def selection():    #Sección 1, selección de personaje
     print ("El Bicho")
     print ("Reina Isabel")
     print ("Jackie Chan")
-    print ("Jalks")
-    print ("Lucas")
+    print ("Trump")
+    print ("Messi Chikito")
     
     def choise():
         selectionated.character()
@@ -89,11 +94,11 @@ def selection():    #Sección 1, selección de personaje
     elif choose == "JACKIE CHAN":
         selectionated = jackie
         choise()
-    elif choose == "JALKS":
-        selectionated = buitre1
+    elif choose == "TRUMP":
+        selectionated = trump
         choise()
-    elif choose == "LUCAS":
-        selectionated = wolfman
+    elif choose == "MESSI CHIKITO":
+        selectionated = messi
         choise()
     else:
         os.system ("cls") # "cls" en windows y "clear" en mac/replit
@@ -106,41 +111,51 @@ def selection():    #Sección 1, selección de personaje
       input ("Presiona la tecla enter para ver los resultados...")
       os.system ("cls")
 
-selection()
+def prints():       #Sección Pre-Final --- Estado de los avatares
+    if chabelo.selected:
+        print(chabelo.escogido())
+    elif tecun.selected:
+        print(tecun.escogido())
+    elif arjona.selected:
+        print(arjona.escogido())
+    elif gaby.selected:
+        print(gaby.escogido())
+    elif mcgregor.selected:
+        print(mcgregor.escogido())
+    elif jake.selected:
+        print(jake.escogido())
+    elif reina.selected:
+        print(reina.escogido())
+    elif siuu.selected:
+        print(siuu.escogido())
+    elif jackie.selected:
+        print(jackie.escogido())
+    elif trump.selected:
+        print(trump.escogido())
+    else:
+        print(messi.escogido())
 
-#Estado final de los enemigos
-print(chabelo.escogido())
-print(tecun.escogido())
-print(arjona.escogido())
-print(gaby.escogido())
-print(mcgregor.escogido())
-print(jake.escogido())
-print(reina.escogido())
-print(siuu.escogido())
-print(jackie.escogido())
-print(buitre1.escogido())
-print(wolfman.escogido())
+def exports():      #Sección Final --- Exportar datos a Json
+    export = open("Resultados_Nivel.json", "w")
+    export.write("Estos son los resultados del nivel: \n")
+    export.write(chabelo.escogido() + "\n")
+    export.write(tecun.escogido() + "\n")
+    export.write(arjona.escogido() + "\n")
+    export.write(gaby.escogido() + "\n")
+    export.write(mcgregor.escogido() + "\n")
+    export.write(jake.escogido() + "\n")
+    export.write(siuu.escogido() + "\n")
+    export.write(reina.escogido() + "\n")
+    export.write(jackie.escogido() + "\n")
+    export.write(trump.escogido() + "\n")
+    export.write(messi.escogido() + "\n")
+    export.close()
+
+#Índice de Secciones del código
+selection()     #Sección 1 --- Función para selección de personaje
+prints()        #Sección Pre-Final --- Estado de los avatares
+exports()       #Sección Final --- Exportar datos a Json
+
+
 
 input ("Presiona la tecla enter para salir...")
-
-
-#Exportar datos a Json
-export = open("Resultados_Nivel.json", "w")
-export.write("Estos son los resultados del nivel: \n")
-export.write(chabelo.escogido() + "\n")
-export.write(tecun.escogido() + "\n")
-export.write(arjona.escogido() + "\n")
-export.write(gaby.escogido() + "\n")
-export.write(mcgregor.escogido() + "\n")
-export.write(jake.escogido() + "\n")
-export.write(siuu.escogido() + "\n")
-export.write(reina.escogido() + "\n")
-export.write(jackie.escogido() + "\n")
-export.write(buitre1.escogido() + "\n")
-export.write(wolfman.escogido() + "\n")
-export.close()
-
-#Pendiente evaluar si el nivel es superado al vencer luchadores
-#Pendiente funcion para disminuir la resistencia
-#Pendiente funcion de nueva habilidad jugador
-#Pendiente nueva habilidad luchador
