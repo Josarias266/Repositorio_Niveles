@@ -48,7 +48,23 @@ trump = luchador("Trump", 10, 1, False, False, False, False, False, True)
 messi = luchador("Messi Chikito", 10, 1, False, False, False, False, False, True)
 
 print ("Bienvenido!")
-def selection():    #Sección 1 --- Función para selección de personaje
+def players():      #Sección 1 --- Cantidad de jugadores
+  try:
+    amount = int(input("Cuantos jugadores habrán? "))
+    if amount == 1:
+        print("Solo habrá un jugador")
+    elif amount == 2:
+        print("Habrán dos jugadores")
+    else:
+        input ("Solo pueden haber 1 o 2 jugadores, presiona enter para volver a intentarlo...")
+        os.system ("cls")
+        players()
+  except ValueError:
+    input ("Solo puedes introducir valores numéricos, presiona enter para volver a intertarlo...")
+    os.system ("cls")
+    players()
+
+def selection():    #Sección 2 --- Función para selección de personaje
     print ("Escoje tu luchador!")
     print ("Chabelo")
     print ("Tecún Uman")
@@ -108,7 +124,7 @@ def selection():    #Sección 1 --- Función para selección de personaje
       print(restart)
       selection()
     except NameError:
-      input ("Presiona la tecla enter para ver los resultados...")
+      input ("Presiona la tecla enter para empezar el juego...")
       os.system ("cls")
 
 def prints():       #Sección Pre-Final --- Estado de los avatares
@@ -152,7 +168,8 @@ def exports():      #Sección Final --- Exportar datos a Json
     export.close()
 
 #Índice de Secciones del código
-selection()     #Sección 1 --- Función para selección de personaje
+players()       #Sección 1 --- Cantidad de jugadores
+selection()     #Sección 2 --- Función para selección de personaje
 prints()        #Sección Pre-Final --- Estado de los avatares
 exports()       #Sección Final --- Exportar datos a Json
 
