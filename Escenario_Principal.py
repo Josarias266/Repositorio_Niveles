@@ -1,4 +1,5 @@
 import os
+import random
 
 class luchador:  #aquí se define la clase principal para los avatares
     def __init__(self, name, hp, ap, patada, manada, defbaja, defalta, selected_1, selected_2, alive):  #aquí se define el constructor
@@ -30,13 +31,13 @@ class luchador:  #aquí se define la clase principal para los avatares
     
     def escogido_1(self):
         if (self.selected_1):
-            return "El jugador 1 escogió a " + (self.name)
+            return (self.name)
         else:
             pass
     
     def escogido_2(self):
         if (self.selected_2):
-            return "El jugador 2 escogió a " + (self.name)
+            return (self.name)
         else:
             pass
 
@@ -51,21 +52,27 @@ mcgregor = luchador("Conor Mcgregor", 10, 1, False, False, False, False, False, 
 jake = luchador("Jake Paul", 10, 1, False, False, False, False, False, False, True)
 siuu = luchador("El Bicho", 10, 1, False, False, False, False, False, False, True)
 #Avatares RS
-reina = luchador("La Reina Izabel", 10, 1, False, False, False, False, False, False, True)
+reina = luchador("La Reina Isabel", 10, 1, False, False, False, False, False, False, True)
 jackie = luchador("Jackie Chan", 10, 1, False, False, False, False, False, False, True)
 #Avatares KA
 trump = luchador("Trump", 10, 1, False, False, False, False, False, False, True)
 messi = luchador("Messi Chikito", 10, 1, False, False, False, False, False, False, True)
 
+
+
 def players():      #Sección 1 --- Cantidad de jugadores
     try:
         amount = int(input("Cuantos jugadores habrán? "))
         if amount == 1:
+            os.system ("cls")
             player1_choose()
             bot_choose()
+            index_1()
         elif amount == 2:
+            os.system ("cls")
             player1_choose()
             player2_choose()
+            index_2()
         else:
             input ("Solo pueden haber 1 o 2 jugadores, presiona enter para volver a intentarlo...")
             os.system ("cls")
@@ -74,6 +81,27 @@ def players():      #Sección 1 --- Cantidad de jugadores
         input ("Solo puedes introducir valores numéricos, presiona enter para volver a intertarlo...")
         os.system ("cls")
         players()
+
+def index_1(): #Índice en caso de que solo haya un jugador
+    prints_1()
+    prints_2()
+    input ("Presiona la tecla enter para iniciar el juego...")
+    os.system("cls")
+    print ("Turno del Jugador 1!")
+    player_1_atack()
+    player_1_defense()
+
+def index_2(): #Índice en caso de que hayan dos jugadores
+    prints_1()
+    prints_2()
+    input ("Presiona la tecla enter para iniciar el juego...")
+    os.system("cls")
+    print ("Turno del Jugador 1!")
+    player_1_atack()
+    player_1_defense()
+    print ("Turno del Jugador 2!")
+    player_2_atack()
+    player_2_defense()
 
 def selection_1():    #Sección 2.1 --- Función para selección de personaje
     print ("Escoje un personaje de la lista!")
@@ -135,7 +163,7 @@ def selection_1():    #Sección 2.1 --- Función para selección de personaje
       print(restart)
       selection_1()
     except NameError:
-      input ("Presiona la tecla enter para empezar el juego...")
+      input ("Presiona la tecla enter para continuar...")
       os.system ("cls")
 
 def selection_2():    #Sección 2.2 --- Función para selección de personaje
@@ -198,7 +226,7 @@ def selection_2():    #Sección 2.2 --- Función para selección de personaje
       print(restart)
       selection_2()
     except NameError:
-      input ("Presiona la tecla enter para empezar el juego...")
+      input ("Presiona la tecla enter para continuar...")
       os.system ("cls")
 
 def player1_choose():
@@ -210,59 +238,176 @@ def player2_choose():
     selection_2()
 
 def bot_choose():
-    player2_choose()
+
+    def choice():
+        fighter_2.character_2()
+
+    choose = random.randint(1,11)
+    if choose == 1:
+        fighter_2 = chabelo
+        choice()
+    elif choose == 2:
+        fighter_2 = tecun
+        choice()
+    elif choose == 3:
+        fighter_2 = arjona
+        choice()
+    elif choose == 4:
+        fighter_2 = gaby
+        choice()
+    elif choose == 5:
+        fighter_2 = mcgregor
+        choice()
+    elif choose == 6:
+        fighter_2 = jake
+        choice()
+    elif choose == 7:
+        fighter_2 = siuu
+        choice()
+    elif choose == 8:
+        fighter_2 = reina
+        choice()
+    elif choose == 9:
+        fighter_2 = jackie
+        choice()
+    elif choose == 10:
+        fighter_2 = trump
+        choice()
+    elif choose == 11:
+        fighter_2 = messi
+        choice()
 
 def prints_1():       #Sección Pre-Final --- Estado de los avatares 1
     if chabelo.selected_1:
-        print(chabelo.escogido_1())
+        print("El jugador 1 escogió a " + chabelo.escogido_1())
     elif tecun.selected_1:
-        print(tecun.escogido_1())
+        print("El jugador 1 escogió a " + tecun.escogido_1())
     elif arjona.selected_1:
-        print(arjona.escogido_1())
+        print("El jugador 1 escogió a " + arjona.escogido_1())
     elif gaby.selected_1:
-        print(gaby.escogido_1())
+        print("El jugador 1 escogió a " + gaby.escogido_1())
     elif mcgregor.selected_1:
-        print(mcgregor.escogido_1())
+        print("El jugador 1 escogió a " + mcgregor.escogido_1())
     elif jake.selected_1:
-        print(jake.escogido_1())
+        print("El jugador 1 escogió a " + jake.escogido_1())
     elif reina.selected_1:
-        print(reina.escogido_1())
+        print("El jugador 1 escogió a " + reina.escogido_1())
     elif siuu.selected_1:
-        print(siuu.escogido_1())
+        print("El jugador 1 escogió a " + siuu.escogido_1())
     elif jackie.selected_1:
-        print(jackie.escogido_1())
+        print("El jugador 1 escogió a " + jackie.escogido_1())
     elif trump.selected_1:
-        print(trump.escogido_1())
+        print("El jugador 1 escogió a " + trump.escogido_1())
     elif messi.selected_1:
-        print(messi.escogido_2())
+        print("El jugador 1 escogió a " + messi.escogido_1())
     else:
         pass
 
 def prints_2():       #Sección Pre-Final --- Estado de los avatares 2
     if chabelo.selected_2:
-        print(chabelo.escogido_2())
+        print("El jugador 2 escogió a " + chabelo.escogido_2())
     elif tecun.selected_2:
-        print(tecun.escogido_2())
+        print("El jugador 2 escogió a " + tecun.escogido_2())
     elif arjona.selected_2:
-        print(arjona.escogido_2())
+        print("El jugador 2 escogió a " + arjona.escogido_2())
     elif gaby.selected_2:
-        print(gaby.escogido_2())
+        print("El jugador 2 escogió a " + gaby.escogido_2())
     elif mcgregor.selected_2:
-        print(mcgregor.escogido_2())
+        print("El jugador 2 escogió a " + mcgregor.escogido_2())
     elif jake.selected_2:
-        print(jake.escogido_2())
+        print("El jugador 2 escogió a " + jake.escogido_2())
     elif reina.selected_2:
-        print(reina.escogido_2())
+        print("El jugador 2 escogió a " + reina.escogido_2())
     elif siuu.selected_2:
-        print(siuu.escogido_2())
+        print("El jugador 2 escogió a " + siuu.escogido_2())
     elif jackie.selected_2:
-        print(jackie.escogido_2())
+        print("El jugador 2 escogió a " + jackie.escogido_2())
     elif trump.selected_2:
-        print(trump.escogido_2())
+        print("El jugador 2 escogió a " + trump.escogido_2())
     elif messi.selected_2:
-        print(messi.escogido_2())
+        print("El jugador 2 escogió a " + messi.escogido_2())
     else:
         pass
+
+def player_1_atack(): #Ataque del jugador 1
+
+    def choise():
+        golpe_1 = punch_1
+
+    punch = input("Quieres tirar una patada o una manada?: ")
+    punch = punch.upper()
+    if punch == "PATADA":
+        print("El jugador 1 tiró una patada")
+        punch_1 = "manada"
+        choise()
+    elif punch == "MANADA":
+        print("El jugador 1 tiró una manada")
+        punch_1 = "patada"
+        choise()
+    else:
+        os.system("cls")
+        restart = "Vuelve a Intentarlo! Solo puedes dar una 'patada' o una 'manada'"
+    try:
+      print(restart)
+      player_1_atack()
+    except NameError:
+      pass
+
+def player_1_defense():
+    defense = input("Quieres cubrirte la cara o las patas?: ")
+    defense = defense.upper()
+    if defense == "CARA":
+        print("El jugador 1 se cubrió la cara")
+        defense_1 = "def_alta"
+    elif defense == "PATAS":
+        print("El jugador 1 se cubrió las patas")
+        defense_1 = "def_baja"
+    else:
+        os.system("cls")
+        restart = "Vuelve a Intentarlo! Solo puedes cubrirte la 'cara' o las 'patas'"
+    try:
+      print(restart)
+      player_1_defense()
+    except NameError:
+      input ("Presiona la tecla enter para continuar...")
+      os.system ("cls")
+
+def player_2_atack(): #Ataque del jugador 2
+    punch = input("Quieres tirar una patada o una manada?: ")
+    punch = punch.upper()
+    if punch == "PATADA":
+        print("El jugador 2 tiró una patada")
+        punch_2 = "manada"
+    elif punch == "MANADA":
+        print("El jugador 2 tiró una manada")
+        punch_2 = "patada"
+    else:
+        os.system("cls")
+        restart = "Vuelve a Intentarlo! Solo puedes dar una 'patada' o una 'manada'"
+    try:
+      print(restart)
+      player_2_atack()
+    except NameError:
+      pass
+
+def player_2_defense():
+    defense = input("Quieres cubrirte la cara o las patas?: ")
+    defense = defense.upper()
+    if defense == "CARA":
+        print("El jugador 2 se cubrió la cara")
+        defense_2 = "def_alta"
+    elif defense == "PATAS":
+        print("El jugador 2 se cubrió las patas")
+        defense_2 = "def_baja"
+    else:
+        os.system("cls")
+        restart = "Vuelve a Intentarlo! Solo puedes cubrirte la 'cara' o las 'patas'"
+    try:
+      print(restart)
+      player_2_defense()
+    except NameError:
+      input ("Presiona la tecla enter para continuar...")
+      os.system ("cls")
 
 def exports():      #Sección Final --- Exportar datos a Json
     export = open("Resultados_Nivel.json", "w")
@@ -284,9 +429,4 @@ def exports():      #Sección Final --- Exportar datos a Json
 os.system("cls")        #Límpia la pantalla
 print ("Bienvenido!")   #Mensaje de Bienvenida
 players()               #Sección 1 --- Cantidad de jugadores
-prints_1()              #Sección Pre-Final --- Estado de los avatares
-prints_2()              #Sección Pre-Final --- Estado de los avatares
 #exports()               #Sección Final --- Exportar datos a Json
-
-
-input ("Presiona la tecla enter para salir...")
