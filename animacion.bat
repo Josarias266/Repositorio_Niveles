@@ -1,4 +1,4 @@
-color a
+color 30
 @echo off
 cls
 
@@ -120,6 +120,4 @@ echo							  ######
 echo							  ######
 echo							  ######
 echo.
-echo Presiona enter para repetir la animacion
-pause>nul
-goto a1
+pause
