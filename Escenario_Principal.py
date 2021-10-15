@@ -19,22 +19,26 @@ class luchador:  #aquí se define la clase principal para los avatares
 
     def character_1(self):  #método para indicar el personaje seleccionado
         self.selected_1 = True
-    
+        global peleador_1
+        peleador_1 = self.name
+
     def character_2(self):  #método para indicar el personaje seleccionado
         self.selected_2 = True
+        global peleador_2
+        peleador_2 = self.name
 
     def estado(self):  #método para informar sobre el estado del enemigo
         if (self.alive):
             return "El enemigo " + (self.name) + " sigue con vida"
         else:
             return "El enemigo " + (self.name) + " ha muerto"
-    
+
     def escogido_1(self):
         if (self.selected_1):
             return (self.name)
         else:
             pass
-    
+
     def escogido_2(self):
         if (self.selected_2):
             return (self.name)
@@ -65,11 +69,14 @@ def players():      #Sección 1 --- Cantidad de jugadores
         amount = int(input("Cuantos jugadores habrán? "))
         if amount == 1:
             os.system ("cls")
+            global human_players
+            human_players = 1
             player1_choose()
             bot_choose()
             index_1()
         elif amount == 2:
             os.system ("cls")
+            human_players = 2
             player1_choose()
             player2_choose()
             index_2()
@@ -90,6 +97,9 @@ def index_1(): #Índice en caso de que solo haya un jugador
     print ("Turno del Jugador 1!")
     player_1_atack()
     player_1_defense()
+    bot_atack()
+    bot_defense()
+    input ("Presiona la tecla enter para ver los resultados...")
 
 def index_2(): #Índice en caso de que hayan dos jugadores
     prints_1()
@@ -331,19 +341,17 @@ def prints_2():       #Sección Pre-Final --- Estado de los avatares 2
 
 def player_1_atack(): #Ataque del jugador 1
 
-    def choise():
-        golpe_1 = punch_1
-
     punch = input("Quieres tirar una patada o una manada?: ")
     punch = punch.upper()
     if punch == "PATADA":
-        print("El jugador 1 tiró una patada")
+        print(peleador_1, "tiró una patada")
+        global punch_1
         punch_1 = "manada"
-        choise()
+        
     elif punch == "MANADA":
-        print("El jugador 1 tiró una manada")
+        print(peleador_1, "tiró una manada")
         punch_1 = "patada"
-        choise()
+        
     else:
         os.system("cls")
         restart = "Vuelve a Intentarlo! Solo puedes dar una 'patada' o una 'manada'"
@@ -357,10 +365,11 @@ def player_1_defense():
     defense = input("Quieres cubrirte la cara o las patas?: ")
     defense = defense.upper()
     if defense == "CARA":
-        print("El jugador 1 se cubrió la cara")
+        print(peleador_1, "se cubrió la cara")
+        global defense_1
         defense_1 = "def_alta"
     elif defense == "PATAS":
-        print("El jugador 1 se cubrió las patas")
+        print(peleador_1, "se cubrió las patas")
         defense_1 = "def_baja"
     else:
         os.system("cls")
@@ -376,10 +385,11 @@ def player_2_atack(): #Ataque del jugador 2
     punch = input("Quieres tirar una patada o una manada?: ")
     punch = punch.upper()
     if punch == "PATADA":
-        print("El jugador 2 tiró una patada")
+        print(peleador_2, "tiró una patada")
+        global punch_2
         punch_2 = "manada"
     elif punch == "MANADA":
-        print("El jugador 2 tiró una manada")
+        print(peleador_2, "tiró una manada")
         punch_2 = "patada"
     else:
         os.system("cls")
@@ -394,10 +404,11 @@ def player_2_defense():
     defense = input("Quieres cubrirte la cara o las patas?: ")
     defense = defense.upper()
     if defense == "CARA":
-        print("El jugador 2 se cubrió la cara")
+        print(peleador_2, "se cubrió la cara")
+        global defense_2
         defense_2 = "def_alta"
     elif defense == "PATAS":
-        print("El jugador 2 se cubrió las patas")
+        print(peleador_2, "se cubrió las patas")
         defense_2 = "def_baja"
     else:
         os.system("cls")
@@ -406,8 +417,28 @@ def player_2_defense():
       print(restart)
       player_2_defense()
     except NameError:
-      input ("Presiona la tecla enter para continuar...")
+      input ("Presiona la tecla enter para ver los resultados...")
       os.system ("cls")
+
+def bot_atack():	
+	punch = random.randint(1,2)
+	if punch == 1:
+	    print(peleador_2, "tiró una patada")
+	    global punch_2
+	    punch_2 = "patada"
+	elif punch == 2:
+	    print(peleador_2, "tiró una manada")
+	    punch_2 = "manada"
+
+def bot_defense():	
+	defense = random.randint(1,2)
+	if defense == 1:
+	    print(peleador_2, "se curió la cara")
+	    global defense_2
+	    defense_2 = "def_alta"
+	elif defense == 2:
+	    print(peleador_2, "se cubrió las patas")
+	    defense_2 = "def_baja"
 
 def exports():      #Sección Final --- Exportar datos a Json
     export = open("Resultados_Nivel.json", "w")
@@ -430,3 +461,10 @@ os.system("cls")        #Límpia la pantalla
 print ("Bienvenido!")   #Mensaje de Bienvenida
 players()               #Sección 1 --- Cantidad de jugadores
 #exports()               #Sección Final --- Exportar datos a Json
+#print(human_players)
+#print(punch_1)
+#print(punch_2)
+#print(defense_1)
+#print(defense_2)
+#print(peleador_1)
+#print(peleador_2)
