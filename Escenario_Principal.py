@@ -1,6 +1,9 @@
 #--------------------------------------------------Importaciones :v---------------------------------------------------
-import os           #Aquí se importan los comandos del sistema
-import random       #Aquí se importa la librería para "funciones de azar"
+import os                   #Aquí se importan los comandos del sistema
+import random               #Aquí se importa la librería para "funciones de azar"
+from pygame import mixer    #Aquí se importa la librería para el reproductor de música
+import time                 #Aquí se importa la librería para "funciones de tiempo"
+import platform             #Aquí se importa la librería para saber en que plataforma se está ejecutando el código
 
 #--------------------------------------------------Clase "Luchador"----------------------------------------------------
 class luchador:     #Aquí se define la clase principal para los avatares
@@ -35,37 +38,72 @@ class luchador:     #Aquí se define la clase principal para los avatares
 
 #-----------------------------------------Listado de Luchadores Disponibles---------------------------------------------
 #Avatares JA
-chabelo = luchador("Chabelo", 3, 1, False, False, True)
-tecun = luchador("Tecún Uman", 3, 1, False, False, True)
+chabelo = luchador("Chabelo", 2, 1, False, False, True)
+tecun = luchador("Tecún Uman", 2, 1, False, False, True)
 #Avatares FQ
-arjona = luchador("Ricardo Arjona", 3, 1, False, False, True)
-gaby = luchador("Gaby Moreno", 3, 1, False, False, True)
-mcgregor = luchador("Conor Mcgregor", 3, 1, False, False, True)
+arjona = luchador("Ricardo Arjona", 2, 1, False, False, True)
+gaby = luchador("Gaby Moreno", 2, 1, False, False, True)
+mcgregor = luchador("Conor Mcgregor", 2, 1, False, False, True)
 #Avatares JP
-jake = luchador("Jake Paul", 3, 1, False, False, True)
-siuu = luchador("El Bicho", 3, 1, False, False, True)
+jake = luchador("Jake Paul", 2, 1, False, False, True)
+siuu = luchador("El Bicho", 2, 1, False, False, True)
 #Avatares RS
-reina = luchador("La Reina Isabel", 3, 1, False, False, True)
-jackie = luchador("Jackie Chan", 3, 1, False, False, True)
+reina = luchador("La Reina Isabel", 2, 1, False, False, True)
+jackie = luchador("Jackie Chan", 2, 1, False, False, True)
 #Avatares KA
-trump = luchador("Trump", 3, 1, False, False, True)
-messi = luchador("Messi Chikito", 3, 1, False, False, True)
+trump = luchador("Trump", 2, 1, False, False, True)
+messi = luchador("Messi Chikito", 2, 1, False, False, True)
 
 #--------------------------------------------------Funciones------------------------------------------------------------
+def animation():                    #Simulación de una animación que se muestra en la consola
+    line0 = ["                                           ",  "                                                 ","                                                   ", "                                                      ","                                                            ____________    ","                                                   ","                             #############",]
+    line1 = ["       ++++++                    ##########",  "               ++++++                 ########## ","                   ++++++                ##########", "                       ++++++              ########## ","                           ++++++            ##########    /            \   ","                                       ++++++      ","                             #############",]
+    line2 = ["    ++++++++++++                ####    ####", "           ++++++++++++              ####    ####","                ++++++++++++            ####    ####","                    ++++++++++++          ####    ####","                        ++++++++++++        ####    ####  /    NO  ME    \  ","                                    ++++++++++++   ","                             #############",]
+    line3 = ["  ++++  ++++++++++              ####    ####", "         ++++  ++++++++++            ####    ####","              ++++  ++++++++++          ####    ####","                  ++++  ++++++++++        ####    ####","                      ++++  ++++++++++      ####    ####_/     QUIERO     \ ","                                  ++++  ++++++++++ ","                             ######       ",]
+    line4 = [" +++++  ++++++++               #####    ####", "        +++++  ++++++++             #####    ####","             +++++  ++++++++           #####    ####","                 +++++  ++++++++         #####    ####","                     +++++  ++++++++       #####    ####         IR       / ","                                 +++++  ++++++++   ","                             ######       ",]
+    line5 = [" ++++++++++++                ###############", "        ++++++++++++              ###############","             ++++++++++++            ###############","                 ++++++++++++          ###############","                     ++++++++++++        ###############      SR STARK   /  ","                                 ++++++++++++      ","                             ###########  ",]
+    line6 = [" +++++++++                  ################", "        +++++++++                ################","             +++++++++              ################","                 +++++++++            ################","                     +++++++++          ################  ______________/   ","                                 +++++++++         ","                             ###########  ",]
+    line7 = [" ++++++++++++               ################", "        ++++++++++++             ################","             ++++++++++++           ################","                 ++++++++++++         ################","                     ++++++++++++       ################_/                  ","                                 ++++++++++++      ","                             ###########  ",]
+    line8 = [" +++++++++++++++             ###############", "        +++++++++++++++           ###############","             +++++++++++++++         ###############","                 +++++++++++++++       ###############","                     +++++++++++++++     ###############                    ","                                 +++++++++++++++   ","                             ######       ",]
+    line9 = ["  ++++++++++++++++             #####    ####", "         ++++++++++++++++           #####    ####","              ++++++++++++++++         #####    ####","                  ++++++++++++++++       #####    ####","                      ++++++++++++++++     #####    ####                    ","                                  ++++++++++++++++ ","                             ######       ",]
+    line10= ["    ++++++++++++                ####    ####", "           ++++++++++++              ####    ####","                ++++++++++++            ####    ####","                    ++++++++++++          ####    ####","                        ++++++++++++        ####    ####                    ","                                    ++++++++++++   ","                             ######       ",]
+    line11= ["       ++++++                   ####    ####", "              ++++++                 ####    ####","                   ++++++               ####    ####","                       ++++++             ####    ####","                           ++++++           ####    ####                    ","                                       ++++++      ","                             ######       ",]
+    L = len(line1)
+    n = 1
+    for j in range(0,n):
+        for i in range(0,L):
+            clean_screen()
+            print(line0[i])
+            print(line1[i])
+            print(line2[i])
+            print(line3[i])
+            print(line4[i])
+            print(line5[i])
+            print(line6[i])
+            print(line7[i])
+            print(line8[i])
+            print(line9[i])
+            print(line10[i])
+            print(line11[i])
+            time.sleep(1.5)
+
 def preparativos():                 #Precedentes del código principal
+    mixer.init()
     os.system("title -_-_-_-_-_-_-_-_-_-_-_-_-_-World All Stars Brawl-_-_-_-_-_-_-_-_-_-_-_-_-_-")
     os.system("color 30")
-    os.system("font_music_mk.mp3")
-    os.system("alt_tab.bat")
+    song="font_music_mk.mp3"
+    mixer.music.load(song)
+    mixer.music.play()
 
 def clean_screen():                 #Función para limpiar pantalla
-    try:
-        os.system("cls")    #En caso de usar Windows
-    except:
-        os.system("clear")  #En caso de usar Replit/iOS/Linux
+    if platform.system() == "Windows":
+        os.system("cls")        #En caso de usar Windows
+    else:
+        os.system("clear")      #En caso de usar cualquier otro SO
 
 def bienvenida():                   #Sección 0 --- Pantalla de Bienvenida al Usuario
-    os.system("animacion.bat")
+    animation()
+    input("Presiona enter para continuar...")
     clean_screen()
     print ("Bienvenido!")
 
@@ -73,23 +111,23 @@ def players():                      #Sección 1 --- Cantidad de Jugadores Humano
     try:
         amount = int(input("Cuantos jugadores habrán? "))
         if amount == 1:
-            os.system ("cls")
+            clean_screen()
             global human_players
             human_players = 1
             player1_choose()        #Sección 1.1 v1
             bot_choose()            #Sección 1.1 v3
         elif amount == 2:
-            os.system ("cls")
+            clean_screen()
             human_players = 2
             player1_choose()        #Sección 1.1 v1
             player2_choose()        #Sección 1.1 v2
         else:
             input ("Solo pueden haber 1 o 2 jugadores, presiona enter para volver a intentarlo...")
-            os.system ("cls")
+            clean_screen()
             players()
     except ValueError:
         input ("Solo puedes introducir valores numéricos, presiona enter para volver a intentarlo...")
-        os.system ("cls")
+        clean_screen()
         players()
 
 def player1_choose():               #Sección 1.1 v1 --- Función para que el jugador 1 escoja luchador
@@ -195,7 +233,7 @@ def selection_1():                  #Sección 1.1.1 v1 --- Jugador 1 Escoge un L
         fighter_1 = messi
         choise()
     else:
-        os.system ("cls") # "cls" en windows y "clear" en mac/replit
+        clean_screen() # "cls" en windows y "clear" en mac/replit
         restart = "Jugador 1 intentalo de nuevo y asegurate de haber escogido un enemigo de la lista y de haberlo escrito bien"
     
     try:
@@ -203,7 +241,7 @@ def selection_1():                  #Sección 1.1.1 v1 --- Jugador 1 Escoge un L
       selection_1()
     except NameError:
       input ("Presiona la tecla enter para continuar...")
-      os.system ("cls")
+      clean_screen()
 
 def selection_2():                  #Sección 1.1.1 v2 --- Jugador 2 Escoge un Luchador de la lista
     print ("Escoje un personaje de la lista!")
@@ -259,7 +297,7 @@ def selection_2():                  #Sección 1.1.1 v2 --- Jugador 2 Escoge un L
         fighter_2 = messi
         choise()
     else:
-        os.system ("cls") # "cls" en windows y "clear" en mac/replit
+        clean_screen() # "cls" en windows y "clear" en mac/replit
         restart = "Jugador 2 intentalo de nuevo y asegurate de haber escogido un enemigo de la lista y de haberlo escrito bien"
     
     try:
@@ -267,14 +305,15 @@ def selection_2():                  #Sección 1.1.1 v2 --- Jugador 2 Escoge un L
       selection_2()
     except NameError:
       input ("Presiona la tecla enter para continuar...")
-      os.system ("cls")
+      clean_screen()
 
 def index_2():                      #Sección 2 --- Índice secundario | Desarrollo del juego
     print("El jugador 1 escogió a", fighter_1.name)
     print("El jugador 2 escogió a", fighter_2.name)
     input ("Presiona la tecla enter para iniciar el juego...")
-    os.system("font_music.mp3")
-    os.system("alt_tab.bat")
+    song="font_music.mp3"
+    mixer.music.load(song)
+    mixer.music.play()
     clean_screen()
     while (fighter_1.alive) and (fighter_2.alive):
         print ("Turno del Jugador 1 |", fighter_1.name + "!")
@@ -284,9 +323,9 @@ def index_2():                      #Sección 2 --- Índice secundario | Desarro
             bot_atack()
             bot_defense()
             input ("Presiona la tecla enter para ver los resultados...")
-            os.system ("cls")
+            clean_screen()
             resultados_jugada()
-            os.system ("cls")
+            clean_screen()
         elif human_players == 2:
             print ("Turno del Jugador 2 |", fighter_2.name + "!")
             player_2_atack()
@@ -333,7 +372,7 @@ def player_1_defense():             #Sección 2.2 v1 --- Defensa del jugador 1
       player_1_defense()
     except NameError:
       input ("Presiona la tecla enter para continuar...")
-      os.system ("cls")
+      clean_screen()
 
 def player_2_atack():               #Sección 2.1 v2 --- Ataque del jugador 2
     punch = input("Quieres tirar una patada o una manada?: ")
@@ -372,7 +411,7 @@ def player_2_defense():             #Sección 2.2 v2 --- Defensa del jugador 2
       player_2_defense()
     except NameError:
       input ("Presiona la tecla enter para ver los resultados...")
-      os.system ("cls")
+      clean_screen()
 
 def bot_atack():                    #Sección 2.1 v3 --- Ataque del bot
 	punch = random.randint(1,2)
@@ -419,7 +458,7 @@ def resultados_jugada():            #Sección 2.3 --- Resultados de la jugada ac
     print("Vida restante de", fighter_1.name + ":" , hp_1)
     print("Vida restante de", fighter_2.name + ":" , hp_2)
     input("Presiona enter para volver a intentarlo...")
-    os.system ("cls")
+    clean_screen()
 
 def player_1_point():               #Sección 2.3.1 v1 --- Función por si el jugador 1 da un golpe
     global hp_2
@@ -430,6 +469,8 @@ def player_1_point():               #Sección 2.3.1 v1 --- Función por si el ju
         winner = fighter_1.name
         global loser
         loser = fighter_2.name
+        global winner_player
+        winner_player = "Jugador 1 |"
 
 def player_2_point():               #Sección 2.3.1 v2 --- Función por si el jugador 2 da un golpe
     global hp_1
@@ -440,12 +481,13 @@ def player_2_point():               #Sección 2.3.1 v2 --- Función por si el ju
         winner = fighter_2.name
         global loser
         loser = fighter_1.name
+        global winner_player
+        winner_player = "Jugador 2 |"
 
 def resultados_finales():           #Sección 3 --- Presentación de Resultados
     print(loser, "ha muerto")
-    print("El ganador es:", winner)
+    print("El ganador es el", winner_player, winner)
     input("Presiona enter para salir...")
-    os.system("taskkill /f /im music.ui.exe")
 
 def exports():                      #Sección Final --- Exportar datos a Json --- (Pendiente)
     export = open("Resultados_Nivel.json", "w")
